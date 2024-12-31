@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "poetry add fastapi \"uvicorn[standart]\" \"pydantic[email]\" \"pydantic-settings\""
+version = "0.1"
+description = ""
+authors = ["nik443 <nikhram301@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
