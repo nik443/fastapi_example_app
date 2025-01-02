@@ -6,14 +6,16 @@ from fastapi import FastAPI
 from app.api import router as api_router
 from app.core.config import settings
 from app.core.models.db_helper import db_helper
+from core.models.base import Base
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # startup - часть генератора, отвечающая за действия при запуске приложения
+    async with db_helper.engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
     yield
     # shutdown - часть генератора, отвечающая за действия при остановке приложения
-    print("dispose engine")
     await db_helper.dispose()
 
 
